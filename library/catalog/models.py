@@ -72,5 +72,4 @@ class BookInstance(models.Model):
         return f'{self.id} {self.book.id}'
         #return f'{self.id} {self.book.__str__()}'
         
-class User(models.Model):
-    
+#class User(models.Model):

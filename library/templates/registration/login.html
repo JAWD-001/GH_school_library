@@ -9,16 +9,16 @@
     <h1>Login Page</h1>
     {% if form.errors %}
     <p>Your usename or password was incorrect. Try again</p>
-    {% endif %} 
-    {% if next %} 
-        {% if user.is_authenticated %}
-            <p>Sorry, you do not have permssion to see this page</p>
-        {% else %}
-            <p>Please login to see this page</p>
-            user logged in but can't access Page user not logged in but can
-            be redirected 
-    {% endif %}
+    {% endif %} {% if next %} {% if user.is_authenticated %}
+    <p>Sorry, you do not have permssion to see this page</p>
+    {% else %}
+    <p>Please login to see this page</p>
+    {% endif %} {% endif %}
     <form action="POST">
-    {% csrf_token %}
+      {% csrf_token %} {{form.username.label_tag}} {{form.username}}
+      {{form.password.label_tag}} {{form.password}}
+    </form>
+    <input type="submit" value="Submit" />
+    <input type="hidden" name="next" value="{{next}}"
   </body>
 </html>
