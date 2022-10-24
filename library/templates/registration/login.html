@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Login Page</title>
   </head>
   <body>
     <h1>Login Page</h1>
@@ -14,11 +14,11 @@
     {% else %}
     <p>Please login to see this page</p>
     {% endif %} {% endif %}
-    <form action="POST">
+    <form method="POST" action="{% url 'login' %}">
       {% csrf_token %} {{form.username.label_tag}} {{form.username}}
       {{form.password.label_tag}} {{form.password}}
+      <input type="submit" value="Login" />
+      <input type="hidden" name="next" value="{{next}}" />
     </form>
-    <input type="submit" value="Submit" />
-    <input type="hidden" name="next" value="{{next}}"
   </body>
 </html>
