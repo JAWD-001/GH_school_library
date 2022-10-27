@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from .models import Book, Author, BookInstance, Genre, Language
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 def index(request):
@@ -19,7 +20,7 @@ def index(request):
     
     return render(request,'catalog/index.html', context=context)
 
-class BookCreate(CreateView):
+class BookCreate(LoginRequiredMixin, CreateView):
     model = Book
     fields = '__all__'
     success_url = reverse_lazy('login : book_detail')
@@ -27,4 +28,7 @@ class BookCreate(CreateView):
 class  BookDetail(DetailView):
     model = Book
     
-    
+@login_required
+def my_view(request):
+    return render(request, 'catalog/my_view.html')
+
